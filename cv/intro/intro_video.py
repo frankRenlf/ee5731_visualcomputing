@@ -40,7 +40,7 @@ def camera_read():
 
 
 def read_video():
-    cap = cv.VideoCapture('../data/video/output.mp4')
+    cap = cv.VideoCapture(1)
 
     size = (int(cap.get(cv.CAP_PROP_FRAME_WIDTH)),
             int(cap.get(cv.CAP_PROP_FRAME_HEIGHT)))
@@ -57,6 +57,9 @@ def read_video():
         frame = cv.flip(frame, 1)
         out.write(frame)
         cv.imshow('frame', frame)
+        cv.imshow('frame_resize', cv.resize(frame,
+                                            (int(frame.shape[1] * 0.75),
+                                             int(frame.shape[0] * 0.75))))
         if cv.waitKey(1) == ord('q'):
             break
     # Release everything if job is finished
