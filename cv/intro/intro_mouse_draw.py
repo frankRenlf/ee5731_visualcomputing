@@ -29,9 +29,9 @@ class Draw:
         elif event == cv.EVENT_MOUSEMOVE:
             if self.drawing:
                 if self.mode:
-                    cv.rectangle(img, (self.ix, self.iy), (x, y), (0, 255, 0), -1)
+                    cv.rectangle(img, (self.ix, self.iy), (x, y), (0, 255, 0), thickness=cv.FILLED)
                 else:
-                    cv.circle(img, (x, y), 5, (0, 0, 255), -1)
+                    cv.circle(img, (x, y), 5, (0, 0, 255), thickness=cv.FILLED)
 
         elif event == cv.EVENT_LBUTTONUP:
             self.drawing = False

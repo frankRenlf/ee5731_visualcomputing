@@ -39,15 +39,20 @@ def camera_read():
     cv.destroyAllWindows()
 
 
+def changeRes(cap, width, height):
+    cap.set(3, width)
+    cap.set(4, height)
+
+
 def read_video():
     cap = cv.VideoCapture(1)
-
+    # changeRes(cap, 1280, 720)
     size = (int(cap.get(cv.CAP_PROP_FRAME_WIDTH)),
             int(cap.get(cv.CAP_PROP_FRAME_HEIGHT)))
-
+    print(size)
     # Define the codec and create VideoWriter object
     fourcc = cv.VideoWriter_fourcc(*"mp4v")
-    out = cv.VideoWriter('../data/video/output2.mp4', fourcc, 15, size)
+    out = cv.VideoWriter('../data/video/output3.mp4', fourcc, 15, size)
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
@@ -57,9 +62,11 @@ def read_video():
         frame = cv.flip(frame, 1)
         out.write(frame)
         cv.imshow('frame', frame)
-        cv.imshow('frame_resize', cv.resize(frame,
-                                            (int(frame.shape[1] * 0.75),
-                                             int(frame.shape[0] * 0.75))))
+        # cv.imshow('frame_resize',
+        #           cv.resize(frame,
+        #                     (int(frame.shape[1] * 0.75), int(frame.shape[0] * 0.75)),
+        #                     interpolation=cv.INTER_AREA)
+        #           )
         if cv.waitKey(1) == ord('q'):
             break
     # Release everything if job is finished
