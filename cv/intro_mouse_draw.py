@@ -45,8 +45,7 @@ if __name__ == "__main__":
 
     while True:
         cv.imshow('image', img)
-        k = cv.waitKey(1) & 0xFF
-        if k == ord('m'):
+        if cv.waitKey(1) == ord('m'):
             mode = not mode
         if cv.waitKey(1) == ord('q'):
             break
