@@ -16,7 +16,7 @@ import sys
 if __name__ == "__main__":
     BLUE = [255, 0, 0]
 
-    img1 = cv.imread("./1_cat.jpg")
+    img1 = cv.imread("../data/img/1_cat.jpg")
 
     replicate = cv.copyMakeBorder(img1, 10, 10, 10, 10, cv.BORDER_REPLICATE)
     reflect = cv.copyMakeBorder(img1, 10, 10, 10, 10, cv.BORDER_REFLECT)
