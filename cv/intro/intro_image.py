@@ -11,22 +11,13 @@
 
 import cv2 as cv
 import sys
+import numpy as np
 
-if __name__ == "__main__":
-    # img = cv.imread(cv.samples.findFile("../data/img/1_cat.jpg"))
-    # if img is None:
-    #     sys.exit("Could not read the image.")
-    # cv.imshow("Display window", img)
-    # k = cv.waitKey(0)
-    # if k == ord("s"):
-    #     cv.imwrite("../data/img/banana_3.jpg", img)
 
-    import cv2
-    import numpy as np
-
+def sift_demo():
     # 读取图像
     image_path = '../data/img/1_cat.jpg'
-    image = cv2.imread(image_path)
+    image = cv.imread(image_path)
 
     # 创建HOG描述符计算器
     win_size = (32, 64)
@@ -34,7 +25,7 @@ if __name__ == "__main__":
     block_stride = (4, 4)
     cell_size = (4, 4)
     nbins = 9
-    hog = cv2.HOGDescriptor(win_size, block_size, block_stride, cell_size, nbins)
+    hog = cv.HOGDescriptor(win_size, block_size, block_stride, cell_size, nbins)
 
     # 计算HOG特征
     hog_features = hog.compute(image)
@@ -58,7 +49,17 @@ if __name__ == "__main__":
     hog_image = hog_image.astype(np.uint8)
 
     # 显示图像和HOG方向图
-    cv2.imshow('Image', image)
-    cv2.imshow('HOG Direction Image', hog_image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    cv.imshow('Image', image)
+    cv.imshow('HOG Direction Image', hog_image)
+    cv.waitKey(0)
+    cv.destroyAllWindows()
+
+
+if __name__ == "__main__":
+    img = cv.imread(cv.samples.findFile("../data/img/1_cat.jpg"))
+    if img is None:
+        sys.exit("Could not read the image.")
+    cv.imshow("Display window", img)
+    k = cv.waitKey(0)
+    if k == ord("s"):
+        cv.imwrite("../data/img/banana_3.jpg", img)
