@@ -43,7 +43,7 @@ if __name__ == "__main__":
     cv.namedWindow('image')
     cv.setMouseCallback('image', draw_circle)
 
-    while (1):
+    while True:
         cv.imshow('image', img)
         k = cv.waitKey(1) & 0xFF
         if k == ord('m'):
