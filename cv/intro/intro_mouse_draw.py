@@ -17,7 +17,7 @@ import cv2 as cv
 
 class Draw:
     def __init__(self):
-        self.mode = True  # if True, draw rectangle. Press 'm' to toggle to curve
+        self.mode = 0  # if True, draw rectangle. Press 'm' to toggle to curve
         self.drawing = False  # true if mouse is pressed
         self.ix, self.iy = -1, -1
 
@@ -28,17 +28,25 @@ class Draw:
             self.ix, self.iy = x, y
         elif event == cv.EVENT_MOUSEMOVE:
             if self.drawing:
-                if self.mode:
+                if self.mode == 0:
                     cv.rectangle(img, (self.ix, self.iy), (x, y), (0, 255, 0), thickness=cv.FILLED)
-                else:
+                elif self.mode == 1:
                     cv.circle(img, (x, y), 20, (0, 0, 255), thickness=2)
+                elif self.mode == 2:
+                    cv.putText(img, 'well done',
+                               (x, y), cv.FONT_HERSHEY_COMPLEX,
+                               0.5, (0, 0, 255), thickness=2)
 
         elif event == cv.EVENT_LBUTTONUP:
             self.drawing = False
-            if self.mode:
+            if self.mode == 0:
                 cv.rectangle(img, (self.ix, self.iy), (x, y), (0, 255, 0), thickness=cv.FILLED)
-            else:
-                cv.circle(img, (x, y), 5, (0, 0, 255), 2)
+            elif self.mode == 1:
+                cv.circle(img, (x, y), 20, (0, 0, 255), 2)
+            elif self.mode == 2:
+                cv.putText(img, 'welldone',
+                           (x, y), cv.FONT_HERSHEY_COMPLEX,
+                           0.5, (0, 0, 255), thickness=2)
 
 
 if __name__ == "__main__":
@@ -51,7 +59,7 @@ if __name__ == "__main__":
         cv.imshow('image', img)
         k = cv.waitKey(1)
         if k == ord('m'):
-            draw.mode = not draw.mode
+            draw.mode = (draw.mode + 1) % 3
         elif k == ord('q'):
             break
     cv.destroyAllWindows()
