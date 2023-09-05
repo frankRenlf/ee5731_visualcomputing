@@ -13,7 +13,7 @@ import numpy as np
 import cv2 as cv
 
 
-def ori():
+def camera_read():
     cap = cv.VideoCapture(1)
 
     size = (int(cap.get(cv.CAP_PROP_FRAME_WIDTH)),
@@ -39,5 +39,31 @@ def ori():
     cv.destroyAllWindows()
 
 
+def read_video():
+    cap = cv.VideoCapture('../data/video/output.mp4')
+
+    size = (int(cap.get(cv.CAP_PROP_FRAME_WIDTH)),
+            int(cap.get(cv.CAP_PROP_FRAME_HEIGHT)))
+
+    # Define the codec and create VideoWriter object
+    fourcc = cv.VideoWriter_fourcc(*"mp4v")
+    out = cv.VideoWriter('../data/video/output2.mp4', fourcc, 15, size)
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            print("Can't receive frame (stream end?). Exiting ...")
+            break
+        # write the flipped frame
+        frame = cv.flip(frame, 1)
+        out.write(frame)
+        cv.imshow('frame', frame)
+        if cv.waitKey(1) == ord('q'):
+            break
+    # Release everything if job is finished
+    cap.release()
+    out.release()
+    cv.destroyAllWindows()
+
+
 if __name__ == "__main__":
-    ori()
+    read_video()
