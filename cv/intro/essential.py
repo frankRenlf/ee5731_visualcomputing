@@ -17,7 +17,7 @@ def transform():
     img = cv.imread('../data/img/1_cat.jpg')
     if img is None:
         sys.exit("Could not read the image.")
-    arr = [img, cv.cvtColor(img, cv.COLOR_BGR2RGB), cv.GaussianBlur(img, (3, 3), cv.BORDER_DEFAULT)]
+    arr = [img, cv.cvtColor(img, cv.COLOR_BGR2RGB), cv.GaussianBlur(img, (7, 7), cv.BORDER_DEFAULT)]
     i = 0
     while True:
         k = cv.waitKey(1)
