@@ -24,15 +24,15 @@ def draw_circle(event, x, y, flags, param):
         drawing = True
         ix, iy = x, y
     elif event == cv.EVENT_MOUSEMOVE:
-        if drawing == True:
-            if mode == True:
+        if drawing:
+            if mode:
                 cv.rectangle(img, (ix, iy), (x, y), (0, 255, 0), -1)
             else:
                 cv.circle(img, (x, y), 5, (0, 0, 255), -1)
 
     elif event == cv.EVENT_LBUTTONUP:
         drawing = False
-        if mode == True:
+        if mode:
             cv.rectangle(img, (ix, iy), (x, y), (0, 255, 0), -1)
         else:
             cv.circle(img, (x, y), 5, (0, 0, 255), -1)
