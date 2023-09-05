@@ -31,14 +31,14 @@ class Draw:
                 if self.mode:
                     cv.rectangle(img, (self.ix, self.iy), (x, y), (0, 255, 0), thickness=cv.FILLED)
                 else:
-                    cv.circle(img, (x, y), 5, (0, 0, 255), thickness=cv.FILLED)
+                    cv.circle(img, (x, y), 20, (0, 0, 255), thickness=2)
 
         elif event == cv.EVENT_LBUTTONUP:
             self.drawing = False
             if self.mode:
-                cv.rectangle(img, (self.ix, self.iy), (x, y), (0, 255, 0), -1)
+                cv.rectangle(img, (self.ix, self.iy), (x, y), (0, 255, 0), thickness=cv.FILLED)
             else:
-                cv.circle(img, (x, y), 5, (0, 0, 255), -1)
+                cv.circle(img, (x, y), 5, (0, 0, 255), 2)
 
 
 if __name__ == "__main__":
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     cv.namedWindow('image')
     draw = Draw()
     cv.setMouseCallback('image', draw.draw_circle)
-
+    # print(cv.FILLED)
     while True:
         cv.imshow('image', img)
         k = cv.waitKey(1)
