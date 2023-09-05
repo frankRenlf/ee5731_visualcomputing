@@ -46,7 +46,7 @@ def changeRes(cap, width, height):
 
 def read_video():
     cap = cv.VideoCapture(1)
-    # changeRes(cap, 1280, 720)
+    # changeRes(cap, 1280, 720)s
     size = (int(cap.get(cv.CAP_PROP_FRAME_WIDTH)),
             int(cap.get(cv.CAP_PROP_FRAME_HEIGHT)))
     print(size)
