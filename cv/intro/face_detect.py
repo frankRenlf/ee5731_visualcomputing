@@ -22,6 +22,11 @@ def camera_read():
     # Define the codec and create VideoWriter object
     fourcc = cv.VideoWriter_fourcc(*"mp4v")
     out = cv.VideoWriter('../data/video/output.mp4', fourcc, 15, size)
+
+    face_cascade = cv.CascadeClassifier(
+        '/Users/frank/anaconda3/envs/d2l-zh/lib/python3.9/site-packages/cv2/data/haarcascade_frontalface_default.xml')
+    # 将图像转换为灰度图像（Haar Cascade通常要求灰度图像）
+
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
@@ -29,6 +34,14 @@ def camera_read():
             break
         # write the flipped frame
         frame = cv.flip(frame, 1)
+
+        gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+        # 使用Haar Cascade进行人脸检测
+        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5, minSize=(30, 30))
+        # 在检测到的人脸周围绘制矩形框
+        for (x, y, w, h) in faces:
+            cv.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
         out.write(frame)
         cv.imshow('frame', frame)
         if cv.waitKey(1) == ord('q'):
@@ -76,4 +89,4 @@ def read_video():
 
 
 if __name__ == "__main__":
-    read_video()
+    camera_read()
