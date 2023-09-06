@@ -13,7 +13,7 @@ import numpy as np
 
 
 def exchange_():
-    cap = cv.VideoCapture(1)
+    cap = cv.VideoCapture(0)
 
     while (1):
 
