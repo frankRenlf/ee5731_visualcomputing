@@ -14,7 +14,7 @@ import cv2 as cv
 
 
 def camera_read():
-    cap = cv.VideoCapture(1)
+    cap = cv.VideoCapture(0)
 
     size = (int(cap.get(cv.CAP_PROP_FRAME_WIDTH)),
             int(cap.get(cv.CAP_PROP_FRAME_HEIGHT)))
