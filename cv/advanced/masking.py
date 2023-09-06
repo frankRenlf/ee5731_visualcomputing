@@ -15,7 +15,9 @@ if __name__ == "__main__":
     img = cv.imread('../data/img/1_cat.jpg')
     blank = np.zeros(img.shape[:2], dtype='uint8')
     rec = cv.rectangle(blank.copy(), (50, 50,), (200, 200), (255, 255, 255), -1)
-    aft = cv.bitwise_and(img, img, mask=rec)
+    cir = cv.circle(blank.copy(), (200, 200), 100, (255, 255, 255), -1)
+    mask = cv.bitwise_xor(rec, cir)
+    aft = cv.bitwise_and(img, img, mask=mask)
     while True:
 
         cv.imshow('img', img)
