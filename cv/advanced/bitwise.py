@@ -18,10 +18,14 @@ if __name__ == "__main__":
     img1 = cv.rectangle(blank.copy(), (30, 30), (370, 370), (255, 255, 255), -1)
     img2 = cv.circle(blank.copy(), (200, 200), 200, (255, 255, 255), -1)
     bitwise_and = cv.bitwise_and(img1, img2)
+    bitwise_or = cv.bitwise_or(img1, img2)
+    bitwise_xor = cv.bitwise_xor(img1, img2)
     while True:
         cv.imshow('rectangle', img1)
         cv.imshow('circle', img2)
         cv.imshow('bitwise_and', bitwise_and)
+        cv.imshow('bitwise_or', bitwise_or)
+        cv.imshow('bitwise_xor', bitwise_xor)
         if cv.waitKey(1) == ord('q'):
             break
     cv.destroyAllWindows()
