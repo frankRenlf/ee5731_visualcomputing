@@ -3,10 +3,10 @@
     @Author : Frank.Ren
     @Project : visual_computing 
     @Product : PyCharm
-    @createTime : 2023/9/6 15:08 
+    @createTime : 2023/9/6 15:29 
     @Email : sc19lr@leeds.ac.uk
     @github : https://github.com/frankRenlf
-    @Description : remove some noise
+    @Description : 
 """
 
 import cv2 as cv
