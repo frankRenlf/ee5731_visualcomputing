@@ -31,8 +31,11 @@ if __name__ == "__main__":
     img = cv.imread('../data/img/1_cat.jpg')
     trans = translate(img, -100, 100)
     rotation = rotate(img, 45, )
+    resized = cv.resize(img, (500, 600), interpolation=cv.INTER_CUBIC)
+    flipped = cv.flip(img, -1)
     while True:
-        cv.imshow('img', rotation)
+        cv.imshow('after', flipped)
+        cv.imshow('origin', img)
         if cv.waitKey(1) == ord('q'):
             break
     cv.destroyAllWindows()
