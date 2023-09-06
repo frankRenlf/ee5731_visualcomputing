@@ -37,10 +37,10 @@ if __name__ == "__main__":
 
     plt.show()
 
-    while True:
-        cv.imshow('rec1', mask_rec1)
-        cv.imshow('rec2', mask_rec2)
-        cv.imshow('gray_crop', gray_crop)
-        if cv.waitKey(1) == ord('q'):
-            break
+    # while True:
+    #     cv.imshow('rec1', mask_rec1)
+    #     cv.imshow('rec2', mask_rec2)
+    #     cv.imshow('gray_crop', gray_crop)
+    #     if cv.waitKey(1) == ord('q'):
+    #         break
     cv.destroyAllWindows()
