@@ -14,10 +14,12 @@ import numpy as np
 
 if __name__ == "__main__":
     img = cv.imread('../data/img/1_cat.jpg')
+    blank = np.zeros(img.shape[:2], dtype='uint8')
+    print(img.shape)
     b, g, r = cv.split(img)
     bgr = cv.merge([r, g, b])
     while True:
-        cv.imshow('after', bgr)
+        cv.imshow('after', cv.merge([blank, blank, r]))
         cv.imshow('origin', img)
         if cv.waitKey(1) == ord('q'):
             break
