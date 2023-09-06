@@ -27,7 +27,7 @@ if __name__ == "__main__":
     # hist_gray = cv.calcHist([gray], [0], mask_rec1, [360], [0, 256])
 
     gray_crop = gray[100:150, 200:370]
-    hist_gray = cv.calcHist([gray_crop], [0], None, [180], [0, 256])
+    hist_gray = cv.calcHist([gray_crop], [0], None, [256], [0, 256])
 
     plt.figure()
     # plt.subplot()

@@ -17,7 +17,7 @@ if __name__ == "__main__":
     rec = cv.rectangle(blank.copy(), (50, 50,), (200, 200), (255, 255, 255), -1)
     cir = cv.circle(blank.copy(), (200, 200), 100, (255, 255, 255), -1)
     mask = cv.bitwise_xor(rec, cir)
-    aft = cv.bitwise_and(img, img, mask=mask)
+    aft = cv.bitwise_and(img, img, mask=rec)
     while True:
 
         cv.imshow('img', img)
