@@ -18,11 +18,21 @@ def translate(img, x, y):
     return cv.warpAffine(img, transMat, dimension)
 
 
+def rotate(img, angle, rotatePoint=None):
+    height, weight = img.shape[:2]
+    if rotatePoint is None:
+        rotatePoint = [weight / 2, height / 2]
+    dimension = (weight, height)
+    transMat = cv.getRotationMatrix2D(rotatePoint, angle, 1.0)
+    return cv.warpAffine(img, transMat, dimension)
+
+
 if __name__ == "__main__":
     img = cv.imread('../data/img/1_cat.jpg')
-    trans = translate(img, 100, -100)
+    trans = translate(img, -100, 100)
+    rotation = rotate(img, 45, )
     while True:
-        cv.imshow('img', trans)
+        cv.imshow('img', rotation)
         if cv.waitKey(1) == ord('q'):
             break
     cv.destroyAllWindows()
