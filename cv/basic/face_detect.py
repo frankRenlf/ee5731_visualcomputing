@@ -23,8 +23,11 @@ def camera_read():
     fourcc = cv.VideoWriter_fourcc(*"mp4v")
     out = cv.VideoWriter('../data/video/output.mp4', fourcc, 15, size)
 
+    base_url = '/Users/frank/anaconda3/envs/d2l-zh/lib/python3.9/site-packages/cv2/data/'
+
     face_cascade = cv.CascadeClassifier(
-        '/Users/frank/anaconda3/envs/d2l-zh/lib/python3.9/site-packages/cv2/data/haarcascade_frontalface_default.xml')
+        f'{base_url}haarcascade_frontalface_default.xml')
+    eye_cascade = cv.CascadeClassifier(f'{base_url}haarcascade_eye.xml')
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -40,6 +43,11 @@ def camera_read():
         # 在检测到的人脸周围绘制矩形框
         for (x, y, w, h) in faces:
             cv.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            roi_gray = gray[y:y + h, x:x + w]
+            roi_color = frame[y:y + h, x:x + w]
+            eyes = eye_cascade.detectMultiScale(roi_gray)
+            for (ex, ey, ew, eh) in eyes:
+                cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (255, 0, 0), 2)
 
         out.write(frame)
         cv.imshow('frame', frame)
@@ -89,5 +97,3 @@ def read_video():
 
 if __name__ == "__main__":
     camera_read()
-
-
