@@ -39,13 +39,13 @@ def camera_read():
         # 将图像转换为灰度图像（Haar Cascade通常要求灰度图像）
         gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
         # 使用Haar Cascade进行人脸检测
-        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5, minSize=(10, 10))
+        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=8, minSize=(10, 10))
         # 在检测到的人脸周围绘制矩形框
         for (x, y, w, h) in faces:
             cv.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
             roi_gray = gray[y:y + h, x:x + w]
             roi_color = frame[y:y + h, x:x + w]
-            eyes = eye_cascade.detectMultiScale(roi_gray)
+            eyes = eye_cascade.detectMultiScale(roi_gray, scaleFactor=1.3, minNeighbors=25, minSize=(3, 3))
             for (ex, ey, ew, eh) in eyes:
                 cv.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (255, 0, 0), 2)
 
