@@ -1,0 +1,29 @@
+# -*- coding: UTF-8 -*-
+"""
+    @Author : Frank.Ren
+    @Project : visual_computing 
+    @Product : PyCharm
+    @createTime : 2023/9/8 18:41 
+    @Email : sc19lr@leeds.ac.uk
+    @github : https://github.com/frankRenlf
+    @Description : 
+"""
+
+import cv2 as cv
+import numpy as np
+import matplotlib.pyplot as plt
+
+if __name__ == "__main__":
+    img = cv.imread('../data/img/1_cat.jpg')
+    gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+
+    threshold, thresh = cv.threshold(gray, 150, 255, cv.THRESH_BINARY)
+    threshold_inv, thresh_inv = cv.threshold(gray, 150, 255, cv.THRESH_BINARY_INV)
+    print(threshold, threshold_inv)
+    while True:
+        cv.imshow('thresh', thresh)
+        cv.imshow('thresh_inv', thresh_inv)
+        cv.imshow('gray', gray)
+        if cv.waitKey(1) == ord('q'):
+            break
+    cv.destroyAllWindows()
