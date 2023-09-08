@@ -22,6 +22,7 @@ if __name__ == "__main__":
     # adaptive threshold
     thresh_adaptive = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_MEAN_C, cv.THRESH_BINARY, 11, 3)
     thresh_adaptive_inv = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_MEAN_C, cv.THRESH_BINARY_INV, 11, 3)
+    thresh_adaptive_10 = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_MEAN_C, cv.THRESH_BINARY, 11, 10)
     print(threshold, threshold_inv)
     while True:
         cv.imshow('gray', gray)
@@ -29,6 +30,7 @@ if __name__ == "__main__":
         cv.imshow('thresh_inv', thresh_inv)
         cv.imshow('thresh_adaptive', thresh_adaptive)
         cv.imshow('thresh_adaptive_inv', thresh_adaptive_inv)
+        cv.imshow('thresh_adaptive_10', thresh_adaptive_10)
         if cv.waitKey(1) == ord('q'):
             break
     cv.destroyAllWindows()
