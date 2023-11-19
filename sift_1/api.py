@@ -62,7 +62,7 @@ def sift2():
 
     # ratio test as per Lowe's paper
     for i, (m, n) in enumerate(matches):
-        if m.distance < 0.7 * n.distance:
+        if m.get_dist < 0.7 * n.get_dist:
             matchesMask[i] = [1, 0]
 
     draw_params = dict(matchColor=(0, 255, 0),

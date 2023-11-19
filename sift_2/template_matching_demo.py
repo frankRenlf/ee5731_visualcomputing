@@ -27,7 +27,7 @@ def template():
     # Lowe's ratio test
     good = []
     for m, n in matches:
-        if m.distance < 0.7 * n.distance:
+        if m.get_dist < 0.7 * n.get_dist:
             good.append(m)
 
     if len(good) > MIN_MATCH_COUNT:
